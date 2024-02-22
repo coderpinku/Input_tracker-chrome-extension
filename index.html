@@ -1,4 +1,3 @@
-// chrome://extensions/-developed by pinkuthesmart aka coder pinku
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Chrome Extension</title>
+    <title>Input tracker Chrome Extension</title>
 </head>
 <body>
-    <input type="text"  id="input-el"> <br>
-    <button id="input-btn">SAVE INPUT</button>
-    <button id="save-btn">SAVE TAB</button>
-    <button id="delete-btn">DELETE ALL</button>
-    <ul id="ul-El"></ul>
+    <div class="container">
+        <input type="text" id="input-item"> <br>
+        <button id="save-input">SAVE INPUT</button>
+        <button id="save-btn">SAVE TAB</button>
+        <button id="delete-all-Item">DELETE ALL</button>
+    </div>
+    <ul id="Item-list"></ul>
     <script src="script.js"></script>
 </body>
 </html>

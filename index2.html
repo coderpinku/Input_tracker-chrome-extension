@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+</head>
+<body>
+  <input type="text" id="todo-input" placeholder="Enter your todo">
+  <button id="add-todo-btn">Add Todo</button>
+  <ul id="todo-list">
+    <!-- Todo items will be added dynamically here -->
+  </ul>
+
+  <script>
+    const todoList = document.getElementById('todo-list');
+    const todoInput = document.getElementById('todo-input');
+    const addTodoBtn = document.getElementById('add-todo-btn');
+
+    function deleteTodo(id) {
+      const todoItem = document.getElementById(id);
+      todoItem.remove();
+      // Remove from localStorage
+      const todos = JSON.parse(localStorage.getItem('todos')) || [];
+      const updatedTodos = todos.filter(todo => todo.id !== id);
+      localStorage.setItem('todos', JSON.stringify(updatedTodos));
+    }
+
+    function createTodoElement(todo) {
+      const li = document.createElement('li');
+      li.id = todo.id; // Set a unique ID for the todo item
+      li.textContent = todo.text;
+
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = '❌';
+      deleteButton.addEventListener('click', () => deleteTodo(todo.id));
+
+      const copyButton = document.createElement('button');
+      copyButton.textContent = '📋';
+      copyButton.addEventListener('click', () => {
+        navigator.clipboard.writeText(todo.text);
+        alert('Todo text copied to clipboard!');
+      });
+
+      li.appendChild(deleteButton);
+      li.appendChild(copyButton);
+      return li;
+    }
+
+    function addTodoToList(todo) {
+      const todoElement = createTodoElement(todo);
+      todoList.appendChild(todoElement);
+    }
+
+    function addTodo() {
+      const todoText = todoInput.value.trim();
+      if (todoText !== '') {
+        const todos = JSON.parse(localStorage.getItem('todos')) || [];
+        const newTodo = { id: Date.now().toString(), text: todoText };
+        todos.push(newTodo);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        addTodoToList(newTodo);
+        todoInput.value = '';
+      }
+    }
+
+    function loadTodos() {
+      const todos = JSON.parse(localStorage.getItem('todos')) || [];
+      todos.forEach(todo => addTodoToList(todo));
+    }
+
+    addTodoBtn.addEventListener('click', addTodo);
+
+    loadTodos();
+  </script>
+</body>
+</html>
