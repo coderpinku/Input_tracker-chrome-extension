@@ -1,5 +1,5 @@
 let myInput = [];
-const inputItem = document.getElementById("input-item");
+const inputItem = document.getElementById("myTextarea");
 const saveInputItem = document.getElementById("save-input");
 const deleteAllItemBtn = document.getElementById("delete-all-Item");
 const saveTabBtn = document.getElementById("save-btn");
@@ -74,3 +74,10 @@ function copyToClipBoard(text) {
   document.execCommand("copy");
   textField.remove();
 }
+document.addEventListener("DOMContentLoaded", function () {
+  var textareaElement = document.getElementById("myTextarea");
+  textareaElement.addEventListener("input", function () {
+    textareaElement.style.height = "auto";
+    textareaElement.style.height = textareaElement.scrollHeight + "px";
+  });
+});

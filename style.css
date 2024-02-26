@@ -1,5 +1,6 @@
 :root {
   --color: #04aa6d;
+  --borderColor: rgb(234, 160, 12);
 }
 * {
   margin: 0;
@@ -8,21 +9,25 @@
 }
 body {
   min-width: 250px;
+  max-width: 500px;
+  border: 2px solid var(--borderColor);
 }
 .container {
-  margin: -2px -40px -5px -11px;
-
+  margin: -2px -40px 0px -11px;
   padding: 5px;
 }
-input {
-  align-content: center;
+
+textarea {
   width: 80%;
+  min-height: 20px;
   padding: 4px;
   border: 1px solid var(--color);
-  /* margin: 0px 20px; */
-  margin-left: 14px;
-  margin-top: 5px;
+  box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+  margin: 5px 0px 0px 14px;
 }
+
 #delete-all-Item {
   background-color: white;
   color: #000;
@@ -35,20 +40,19 @@ ul {
   padding: 0px;
   font-size: 12px;
   list-style: none;
+  font-family: system-ui;
+  color: darkgoldenrod;
+  font-weight: bold;
 }
 li {
   margin-top: 1px;
-  line-height: 0.8;
-}
-a {
-  color: var(--color);
-  text-decoration: none;
+  /* line-height: 0.8; */
 }
 
 #delete-all-Item:active {
   background-color: #3e8e41;
   color: #fff;
-  box-shadow: 0 5px #666;
+  box-shadow: 0 5px var(--borderColor);
   transform: translateY(4px);
 }
 #delete-all-Item button:hover {
@@ -79,12 +83,12 @@ button {
   background-color: var(--color);
   border: none;
   border-radius: 5px;
-  box-shadow: 0 3px #999;
+  box-shadow: 0 3px var(--borderColor);
   border: 1px solid var(--color);
 }
 
 button:active {
   background-color: #3e8e41;
-  box-shadow: 0 5px #666;
+  box-shadow: 0 5px var(--borderColor);
   transform: translateY(4px);
 }
