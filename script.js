@@ -13,7 +13,7 @@ if (leadsFromLocalStorage) {
 
 saveTabBtn.addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    myInput.push(tabs[0].url);
+    myInput.unshift(tabs[0].url);
     localStorage.setItem("myInput", JSON.stringify(myInput));
     render(myInput);
   });
@@ -25,7 +25,9 @@ deleteAllItemBtn.addEventListener("dblclick", function () {
   render(myInput);
 });
 saveInputItem.addEventListener("click", function () {
-  myInput.push(inputItem.value);
+  if(inputItem.value.trim() !== "") {
+    myInput.unshift(inputItem.value);
+  }
   inputItem.value = "";
   localStorage.setItem("myInput", JSON.stringify(myInput));
   render(myInput);
