@@ -7,10 +7,15 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
+
+.main-container{
+  display: flex;
+  flex-direction: column;
   min-width: 300px;
   max-width: 300px;
-  border: 2px solid var(--borderColor);
+  border: 1px solid var(--borderColor);
+  max-height: 400px;
+  overflow-y: auto;
 }
 .container {
   margin: -2px -40px 0px -11px;
